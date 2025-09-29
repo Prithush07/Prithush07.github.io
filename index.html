@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prithu Shandilya — Homepage</title>
+  <meta name="description" content="Prithu Shandilya — Physics @ King's College London. Quant research, risk modelling, AI & automation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0d10;--card:#101318;--muted:#a5acba;--text:#e7ecf3;--accent:#8bafff;--accent-2:#a3ffd6;--border:#1b2230;
+      --maxw:960px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 'Inter',system-ui,Segoe UI,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:sticky;top:0;backdrop-filter:saturate(180%) blur(6px);background:rgba(11,13,16,.7);border-bottom:1px solid var(--border);z-index:10}
+    nav{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:18px;padding:10px 16px}
+    nav .brand{font-weight:800;letter-spacing:.3px}
+    nav ul{display:flex;gap:14px;list-style:none;margin:0 0 0 auto;padding:0}
+    nav li a{padding:6px 10px;border-radius:8px}
+    nav li a:hover{background:var(--border)}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:28px 16px}
+    .hero{display:grid;grid-template-columns:140px 1fr;gap:22px;align-items:center;margin-top:18px}
+    .avatar{width:140px;height:140px;border-radius:16px;background:linear-gradient(145deg,#141923,#0b0d10);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--muted)}
+    h1{font-size:36px;line-height:1.15;margin:0 0 6px 0}
+    .role{font-weight:600;color:var(--accent-2);margin:0 0 6px 0}
+    .meta{display:flex;flex-wrap:wrap;gap:10px;color:var(--muted)}
+    .meta a{color:var(--muted)}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 18px 14px;margin:18px 0}
+    .card h2{margin:0 0 6px 0;font-size:22px}
+    .grid{display:grid;gap:14px}
+    @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+    ul.clean{margin:8px 0 0 20px}
+    .tag{display:inline-block;border:1px solid var(--border);background:#0d1117;border-radius:999px;padding:2px 10px;font-size:12px;color:var(--muted);margin:0 6px 6px 0}
+    footer{border-top:1px solid var(--border);color:var(--muted);padding:22px 16px;margin-top:24px}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);background:transparent;color:var(--text);padding:10px 14px;border-radius:12px;font-weight:600}
+    .btn:hover{background:#0d1117}
+    .pillbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .two-col{display:grid;gap:16px}
+    @media(min-width:880px){.two-col{grid-template-columns:1.1fr .9fr}}
+    .small{font-size:14px;color:var(--muted)}
+    .kbd{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size:12px; border:1px solid var(--border); padding:2px 6px; border-radius:6px; background:#0e1218; color:#cbd5e1}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="brand">Prithu Shandilya</div>
+      <ul>
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#pubs">Publications</a></li>
+        <li><a href="#talks">Talks</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="intro">
+      <div class="avatar">PS</div>
+      <div>
+        <h1>Prithu Shandilya</h1>
+        <p class="role">BSc (Hons) Physics @ King’s College London · Capital Modelling (Enstar) · Quant / AI</p>
+        <div class="meta">
+          <span>London, UK</span>
+          <span>·</span>
+          <a href="mailto:prithu@example.com">Email</a>
+          <span>·</span>
+          <a href="https://github.com/Prithush07" target="_blank" rel="noopener">GitHub</a>
+          <span>·</span>
+          <a href="#cv">CV</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div>
+        <div class="card">
+          <h2>Intro</h2>
+          <p>
+            I’m an undergraduate physicist at King’s College London (expected 2026, predicted First). I’ve worked in Capital Modelling & Risk at Enstar (London) and in AI/Innovation on LLM automation. I build
+            quantitative research tools (spectral regime detection, RMT‑denoised covariance), risk models for legacy insurance, and AI workflows (Power Automate, vector RAG).
+          </p>
+          <p>
+            Interests: stochastic processes, market microstructure, extreme‑value methods, spectral analytics, and production‑grade automation. Tooling: Python/C++/NumPy/PyKX, Qiskit, kdb/q, Power Automate.
+          </p>
+          <div class="pillbar">
+            <span class="tag">Quant Research</span>
+            <span class="tag">Risk Modelling</span>
+            <span class="tag">LLM/RAG</span>
+            <span class="tag">Spectral Methods</span>
+            <span class="tag">Qiskit/QAOA</span>
+          </div>
+        </div>
+
+        <div class="card" id="projects">
+          <h2>Projects</h2>
+          <ul class="clean">
+            <li><strong>Spectral Drift Arbitrage</strong> — tracks eigenvalue/eigendirection dynamics of rolling correlation matrices to detect regime shifts; backtests and trading rules (Kaggle‑visible).</li>
+            <li><strong>ADC/LPT Capital Stress Toolkit</strong> — heavy‑tail calibration (GB2, Pareto) with RMT‑denoised copulas; PIT/QQ diagnostics; ±1.2%@99.5% reserve accuracy improvement vs baseline.</li>
+            <li><strong>DORA Clause Checker</strong> — Power Automate + Azure OpenAI RAG that flags edge‑case regulatory clauses in incident reports; SharePoint UI and audit trail.</li>
+            <li><strong>QAOA Treaty Optimiser</strong> — quantum‑inspired optimisation for treaty parameters with re‑runnable parameter range sweeps.</li>
+          </ul>
+          <p class="small">Selected code & write‑ups available on <a href="https://github.com/Prithush07" target="_blank" rel="noopener">GitHub</a>.</p>
+        </div>
+
+        <div class="card" id="pubs">
+          <h2>Publications & Writes</h2>
+          <ul class="clean">
+            <li>Internal whitepaper: <em>Eigen‑Regime Signalling for Reserve Stress</em> (Enstar, 2025).</li>
+            <li>Notebook series: <em>RMT‑Denoised Portfolios & Spectral Risk</em> (2025).</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h2>Education</h2>
+          <ul class="clean">
+            <li><strong>King’s College London</strong> — BSc Physics (Hons), expected 2026; predicted First; awards incl. Dean’s Commendations.</li>
+            <li><strong>Distinctions</strong> — BPhO Top Gold; UK IYPT team; NTSE AIR 20; BMO Round 2.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Awards & Highlights</h2>
+          <ul class="clean">
+            <li>Capital efficiency improved by ~$30m via heavy‑tail calibration & copula redesign (team project).</li>
+            <li>Reserve accuracy tightened to ±1.2% at the 99.5% quantile (vs ±2.2% baseline).</li>
+            <li>KURF research on strategy & digitalisation; datasets of 2003–2025 corporate strategy job ads.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Tech Stack</h2>
+          <div class="pillbar">
+            <span class="tag">Python</span><span class="tag">C++</span><span class="tag">PyKX/kdb</span><span class="tag">NumPy</span>
+            <span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Qiskit</span><span class="tag">LaTeX</span>
+            <span class="tag">Power Automate</span><span class="tag">SharePoint</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card" id="talks">
+      <h2>Talks</h2>
+      <ul class="clean">
+        <li><strong>Spectral Signals for Capital Stress</strong> — internal seminar, 2025.</li>
+        <li><strong>LLM Workflows for Incident Triage</strong> — demo talk, 2025.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="cv">
+      <h2>CV</h2>
+      <p>One‑pager CV (PDF) — add a link to your latest file once uploaded to the repo, e.g. <span class="kbd">/assets/Prithu_Shandilya_CV.pdf</span>.</p>
+      <a class="btn" href="#">Download CV</a>
+    </section>
+
+    <section class="card" id="contact">
+      <h2>Contact</h2>
+      <p>Best way to reach me is via email. Open to quant research/trading, risk, and AI automation roles.</p>
+      <p class="small">© <span id="y"></span> Prithu Shandilya · Built with vanilla HTML/CSS and deployable on GitHub Pages.</p>
+    </section>
+  </main>
+
+  <footer class="wrap small">
+    <div>© <span id="y2"></span> · <a href="#intro">Back to top</a></div>
+  </footer>
+
+  <script>
+    const y=new Date().getFullYear();
+    document.getElementById('y').textContent=y;document.getElementById('y2').textContent=y;
+  </script>
+</body>
+</html>
