@@ -1,0 +1,14 @@
+{
+  "trade_ticker": "SPY",
+  "best_signal": "MLP AE residual",
+  "universe_window": "Macro / 60",
+  "best_ann_return": 0.0815,
+  "best_ann_vol": 0.0771,
+  "best_sharpe": 1.057,
+  "best_max_drawdown": -0.1208,
+  "best_terminal_wealth": 3.23,
+  "newey_west_t_stat": 4.20,
+  "bootstrap_sharpe_interval": [0.55, 1.63],
+  "turnover": 0.0663,
+  "calmar": 0.675
+}
