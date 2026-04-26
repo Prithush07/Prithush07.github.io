@@ -424,8 +424,7 @@
             <span>GitHub Pages</span>
           </div>
           <div class="small">
-            Static dashboard layer. Python/PyTorch research pipeline runs locally and exports JSON/CSV artefacts.
-            Alpaca keys should sit behind a secure backend in production.
+            Static dashboard layer. Python/PyTorch research pipeline runs locally and exports dashboard artefacts.
           </div>
         </div>
       </aside>
@@ -507,6 +506,23 @@
         <div id="scoreChart" class="chart"></div>
       </div>
 
+      <div class="panel wide">
+        <div class="panel-head">
+          <div>
+            <h3>Daily Trade Terminal</h3>
+            <p>Daily position and leverage from the trading strategy.</p>
+          </div>
+        </div>
+
+        <div class="trade-feed" id="dailyTerminal">
+          <div class="trade">
+            <b>Loading</b>
+            <span>Position</span>
+            <span>Leverage</span>
+          </div>
+        </div>
+      </div>
+
       <div class="panel">
         <div class="panel-head">
           <div>
@@ -560,8 +576,8 @@
       <div class="panel wide">
         <div class="panel-head">
           <div>
-            <h3>Forward Trading Performance</h3>
-            <p>Daily trading profits compared to PCA and average correlation baselines.</p>
+            <h3>Paper Trading Performance</h3>
+            <p>Daily trading profits from Apr 1-21, 2026 compared to PCA and average correlation baselines.</p>
           </div>
         </div>
         <div id="forwardChart" class="chart"></div>
@@ -792,6 +808,27 @@
       });
     }
 
+    function renderDailyTerminal(bt) {
+      const terminal = document.getElementById("dailyTerminal");
+      const last = bt.slice(-20).reverse(); // Last 20 days
+
+      terminal.innerHTML = "";
+
+      last.forEach(row => {
+        const pos = toNum(row.pos) ?? 0;
+        const lev = toNum(row.lev) ?? 0;
+
+        const div = document.createElement("div");
+        div.className = "trade";
+        div.innerHTML = `
+          <b>${String(dateKey(row)).slice(0, 10)}</b>
+          <span>Position: ${fmtNum(pos, 2)}</span>
+          <span>Leverage: ${fmtNum(lev, 2)}×</span>
+        `;
+        terminal.appendChild(div);
+      });
+    }
+
     function renderPhase(scores, ridge) {
       let rows = scores.filter(d =>
         toNum(d.avg_corr) !== null &&
@@ -1004,7 +1041,7 @@
     function makeDemoSummary() {
       return {
         trade_ticker: "SPY",
-        timestamp_utc: "Demo mode: no /data files found",
+        timestamp_utc: "Sample data: replace with real exports",
         best_signal: "mlp_ae_resid",
         best_sharpe: 1.90,
         best_ann_return: 0.124,
@@ -1050,7 +1087,7 @@
         scores = makeDemoPhaseRows();
         ridge = [];
         forward = makeDemoForward();
-        document.getElementById("buildMode").textContent = "Demo mode: add /data CSV files for real output";
+        document.getElementById("buildMode").textContent = "Sample data loaded: replace /data files with real exports";
       }
 
       renderMetrics(summary);
@@ -1063,6 +1100,7 @@
       renderEquity(bt);
       renderScore(bt);
       renderTradeFeed(bt);
+      renderDailyTerminal(bt);
       renderPhase(scores, ridge);
       renderForward(forward);
     }
