@@ -556,6 +556,16 @@
           <li>The key point is not prediction of price direction, but detection of fragile market regimes.</li>
         </ul>
       </div>
+
+      <div class="panel wide">
+        <div class="panel-head">
+          <div>
+            <h3>Forward Trading Performance</h3>
+            <p>Daily trading profits compared to PCA and average correlation baselines.</p>
+          </div>
+        </div>
+        <div id="forwardChart" class="chart"></div>
+      </div>
     </section>
 
     <div class="footer">
@@ -568,7 +578,8 @@
       summary: "data/dashboard_summary.json",
       backtest: "data/macro_w60_mlp_ae_resid_bt.csv",
       scores: "data/macro_w60_scores.csv",
-      ridge: "data/macro_w60_mlp_ae_resid_critical_ridge.csv"
+      ridge: "data/macro_w60_mlp_ae_resid_critical_ridge.csv",
+      forward: "data/forward_trading.csv"
     };
 
     async function loadText(path) {
@@ -869,6 +880,46 @@
       }, { responsive: true, displayModeBar: false });
     }
 
+    function renderForward(forward) {
+      const dates = forward.map(dateKey);
+      const strategy = forward.map(d => toNum(d.strategy_profit));
+      const pca = forward.map(d => toNum(d.pca_profit));
+      const avgCorr = forward.map(d => toNum(d.avg_corr_profit));
+
+      Plotly.newPlot("forwardChart", [
+        {
+          x: dates,
+          y: strategy,
+          type: "scatter",
+          mode: "lines",
+          name: "MLP residual strategy",
+          line: { color: "#39ff88", width: 3 }
+        },
+        {
+          x: dates,
+          y: pca,
+          type: "scatter",
+          mode: "lines",
+          name: "PCA baseline",
+          line: { color: "#7dd3fc", width: 2, dash: "dot" }
+        },
+        {
+          x: dates,
+          y: avgCorr,
+          type: "scatter",
+          mode: "lines",
+          name: "Avg correlation baseline",
+          line: { color: "#c084fc", width: 2, dash: "dash" }
+        }
+      ], {
+        ...plotLayout("Forward Trading Daily Profits"),
+        yaxis: {
+          ...plotLayout("").yaxis,
+          title: "Daily profit"
+        }
+      }, { responsive: true, displayModeBar: false });
+    }
+
     function makeDemoBacktest() {
       const out = [];
       let eqS = 1;
@@ -927,6 +978,29 @@
       return rows;
     }
 
+    function makeDemoForward() {
+      const out = [];
+      const start = new Date("2024-01-01");
+      for (let i = 0; i < 60; i++) {
+        const d = new Date(start);
+        d.setDate(start.getDate() + i);
+
+        if (d.getDay() === 0 || d.getDay() === 6) continue;
+
+        const strategy = 0.01 + 0.02 * Math.random();
+        const pca = 0.005 + 0.01 * Math.random();
+        const avgCorr = 0.007 + 0.015 * Math.random();
+
+        out.push({
+          date: d.toISOString().slice(0, 10),
+          strategy_profit: strategy,
+          pca_profit: pca,
+          avg_corr_profit: avgCorr
+        });
+      }
+      return out;
+    }
+
     function makeDemoSummary() {
       return {
         trade_ticker: "SPY",
@@ -945,6 +1019,7 @@
       let bt;
       let scores = [];
       let ridge = [];
+      let forward = [];
 
       try {
         summary = await loadJSON(FILES.summary);
@@ -962,12 +1037,19 @@
           ridge = [];
         }
 
+        try {
+          forward = await loadCSV(FILES.forward);
+        } catch (e) {
+          forward = [];
+        }
+
         document.getElementById("buildMode").textContent = "Loaded exported research artefacts";
       } catch (e) {
         summary = makeDemoSummary();
         bt = makeDemoBacktest();
         scores = makeDemoPhaseRows();
         ridge = [];
+        forward = makeDemoForward();
         document.getElementById("buildMode").textContent = "Demo mode: add /data CSV files for real output";
       }
 
@@ -982,6 +1064,7 @@
       renderScore(bt);
       renderTradeFeed(bt);
       renderPhase(scores, ridge);
+      renderForward(forward);
     }
 
     main().catch(err => {
